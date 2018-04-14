@@ -1,15 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {Route, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Route, Redirect } from "react-router-dom";
 
-const GuestRoute = ({isAuthenticated, component: Component, ...rest}) => (
-    <Route {...rest}
-           render={props => !isAuthenticated ? <Component {...props} /> : <Redirect to='/dashboard'/>}
+const UserRoute = ({isAuthenticated, component: Component, ...rest}) => (
+    <Route
+        {...rest}
+        render={props =>
+            !isAuthenticated ? (
+                <Component {...props} />
+            ) : (
+                <Redirect to="/dashboard"/>
+            )}
     />
 );
 
-GuestRoute.propTypes = {
+UserRoute.propTypes = {
     component: PropTypes.func.isRequired,
     isAuthenticated: PropTypes.bool.isRequired
 };
@@ -17,7 +23,7 @@ GuestRoute.propTypes = {
 function mapStateToProps(state) {
     return {
         isAuthenticated: !!state.user.token
-    }
+    };
 }
 
-export default connect(mapStateToProps)(GuestRoute);
+export default connect(mapStateToProps)(UserRoute);

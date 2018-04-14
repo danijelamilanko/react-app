@@ -1,5 +1,5 @@
-import {USER_LOGGED_IN, USER_LOGGED_OUT} from '../types';
-import api from '../api';
+import { USER_LOGGED_IN, USER_LOGGED_OUT } from "../types";
+import api from "../api";
 import setAuthorizationHeader from "../utils/setAuthorizationHeader";
 
 export const userLoggedIn = user => ({
@@ -13,13 +13,26 @@ export const userLoggedOut = () => ({
 
 export const login = credentials => dispatch =>
     api.user.login(credentials).then(user => {
-        localStorage.beyondJWT = user.token;
+        localStorage.reactJWT = user.token;
         setAuthorizationHeader(user.token);
         dispatch(userLoggedIn(user));
     });
 
-
 export const logout = () => dispatch => {
-    localStorage.removeItem('beyondJWT');
+    localStorage.removeItem("reactJWT");
+    setAuthorizationHeader();
     dispatch(userLoggedOut());
 };
+
+export const confirm = token => dispatch =>
+    api.user.confirm(token).then(user => {
+        localStorage.reactJWT = user.token;
+        dispatch(userLoggedIn(user));
+    });
+
+export const resetPasswordRequest = ({email}) => () =>
+    api.user.resetPasswordRequest(email);
+
+export const validateToken = token => () => api.user.validateToken(token);
+
+export const resetPassword = data => () => api.user.resetPassword(data);

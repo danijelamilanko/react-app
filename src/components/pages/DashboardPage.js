@@ -1,37 +1,23 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
-import TopNavigation from '../navigation/TopNavigation';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import ConfirmEmailMessage from "../messages/ConfirmEmailMessage";
 
 class DashboardPage extends React.Component {
-
     render() {
-        return (
-            <div className='dashboard-page'>
-                <TopNavigation/>
-                <h1>REACT APP</h1>
-            </div>
-        );
+        const {isConfirmed} = this.props;
+        return <div>{!isConfirmed && <ConfirmEmailMessage />}</div>;
     }
 }
 
 DashboardPage.propTypes = {
-    history: PropTypes.shape({
-        push: PropTypes.func.isRequired
-    }).isRequired,
-    user: PropTypes.shape({
-        email: PropTypes.string.isRequired,
-        username: PropTypes.string.isRequired
-    }).isRequired,
+    isConfirmed: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
     return {
-        user: state.user
-    }
+        isConfirmed: !!state.user.confirmed
+    };
 }
 
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(DashboardPage));
+export default connect(mapStateToProps)(DashboardPage);

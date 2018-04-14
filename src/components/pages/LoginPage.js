@@ -1,19 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import LoginForm from '../forms/LoginForm';
-import {login} from '../../actions/auth';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import LoginForm from "../forms/LoginForm";
+import { login } from "../../actions/auth";
 
 class LoginPage extends React.Component {
-
     submit = data =>
-        this.props.login(data).then(() => this.props.history.push('/dashboard'));
+        this.props.login(data).then(() => this.props.history.push("/dashboard"));
 
     render() {
         return (
-            <div className='login-page'>
-                <h1>RACT APP</h1>
+            <div>
+                <h1>Login page</h1>
+
                 <LoginForm submit={this.submit}/>
+
+                <Link to="/forgot_password">Forgot Password?</Link>
             </div>
         );
     }
@@ -26,6 +29,4 @@ LoginPage.propTypes = {
     login: PropTypes.func.isRequired
 };
 
-const mapDispatchToProps = {login};
-
-export default connect(null, mapDispatchToProps)(LoginPage);
+export default connect(null, {login})(LoginPage);

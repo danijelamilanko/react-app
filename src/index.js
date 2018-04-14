@@ -1,31 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom'
-import {BrowserRouter, Route} from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import decode from 'jwt-decode';
-import thunk from 'redux-thunk';
-import {composeWithDevTools} from 'redux-devtools-extension';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import rootReducer from './rootReducer';
-import {userLoggedIn} from './actions/auth';
-import setAuthorizationHeader from './utils/setAuthorizationHeader';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import decode from "jwt-decode";
+import { composeWithDevTools } from "redux-devtools-extension";
+import App from "./App";
+import registerServiceWorker from "./registerServiceWorker";
+import rootReducer from "./rootReducer";
+import { userLoggedIn } from "./actions/auth";
+import setAuthorizationHeader from "./utils/setAuthorizationHeader";
 
 const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-if (localStorage.beyondJWT) {
-    const payload = decode(localStorage.beyondJWT);
+if (localStorage.reactJWT) {
+    const payload = decode(localStorage.reactJWT);
     const user = {
-        token: localStorage.beyondJWT,
+        token: localStorage.reactJWT,
         email: payload.email,
-        username: payload.username
+        confirmed: payload.confirmed
     };
-    setAuthorizationHeader(localStorage.beyondJWT);
+    setAuthorizationHeader(localStorage.reactJWT);
     store.dispatch(userLoggedIn(user));
 }
 
@@ -35,5 +35,6 @@ ReactDOM.render(
             <Route component={App}/>
         </Provider>
     </BrowserRouter>,
-    document.getElementById('root'));
+    document.getElementById("root")
+);
 registerServiceWorker();
