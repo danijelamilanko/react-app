@@ -27,7 +27,7 @@ export const logout = () => dispatch => {
 export const confirm = token => dispatch =>
     api.user.confirm(token).then(user => {
         localStorage.reactJWT = user.token;
-        dispatch(userLoggedIn(user));
+        dispatch(userLoggedIn({...user, loaded: true}));
     });
 
 export const resetPasswordRequest = ({email}) => () =>

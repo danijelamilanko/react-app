@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Form, Button, Message } from "semantic-ui-react";
+import { Form, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import isEmail from "validator/lib/isEmail";
 import InlineError from "../messages/InlineError";

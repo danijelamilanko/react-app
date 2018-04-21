@@ -10,7 +10,7 @@ export const userFetched = user => ({
 export const signup = data => dispatch =>
     api.user.signup(data).then(user => {
         localStorage.reactJWT = user.token;
-        dispatch(userLoggedIn(user));
+        dispatch(userLoggedIn({...user, loaded: true}));
     });
 
 export const fetchCurrentUser = () => (dispatch) =>
