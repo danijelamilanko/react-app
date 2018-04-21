@@ -5,12 +5,11 @@ import "semantic-ui-css/semantic.min.css";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import decode from "jwt-decode";
 import { composeWithDevTools } from "redux-devtools-extension";
 import App from "./App";
 import registerServiceWorker from "./registerServiceWorker";
 import rootReducer from "./rootReducer";
-import { userLoggedIn } from "./actions/auth";
+import { userFetched, fetchCurrentUser } from "./actions/users";
 import setAuthorizationHeader from "./utils/setAuthorizationHeader";
 
 const store = createStore(
@@ -19,14 +18,10 @@ const store = createStore(
 );
 
 if (localStorage.reactJWT) {
-    const payload = decode(localStorage.reactJWT);
-    const user = {
-        token: localStorage.reactJWT,
-        email: payload.email,
-        confirmed: payload.confirmed
-    };
     setAuthorizationHeader(localStorage.reactJWT);
-    store.dispatch(userLoggedIn(user));
+    store.dispatch(fetchCurrentUser());
+} else {
+    store.dispatch(userFetched({}))
 }
 
 ReactDOM.render(
