@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Form, Button } from "semantic-ui-react";
+import { Form, Button, Message } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 import isEmail from "validator/lib/isEmail";
 import InlineError from "../messages/InlineError";
 
@@ -47,34 +48,49 @@ class SignupForm extends React.Component {
         const {data, errors, loading} = this.state;
 
         return (
-            <Form onSubmit={this.onSubmit} loading={loading}>
-                <Form.Field error={!!errors.email}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="email@email.com"
-                        value={data.email}
-                        onChange={this.onChange}
-                    />
-                    {errors.email && <InlineError text={errors.email}/>}
-                </Form.Field>
+            <div className='login-page'>
+                <div className='ui middle aligned center aligned grid'>
+                    <div className='column'>
+                        <h1 className='ui teal image header'>
+                            <div className='content'>
+                                Sign Up
+                            </div>
+                        </h1>
+                        <Form onSubmit={this.onSubmit} loading={loading} className='ui large form'>
+                            <div className='ui stacked segment'>
+                                <Form.Field error={!!errors.email}>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="email@email.com"
+                                        value={data.email}
+                                        onChange={this.onChange}
+                                    />
+                                    {errors.email && <InlineError text={errors.email}/>}
+                                </Form.Field>
 
-                <Form.Field error={!!errors.password}>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={data.password}
-                        onChange={this.onChange}
-                    />
-                    {errors.password && <InlineError text={errors.password}/>}
-                </Form.Field>
+                                <Form.Field error={!!errors.password}>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        value={data.password}
+                                        onChange={this.onChange}
+                                    />
+                                    {errors.password && <InlineError text={errors.password}/>}
+                                </Form.Field>
 
-                <Button primary>Sign Up</Button>
-            </Form>
+                                <Button className='ui fluid large teal submit button'>Sign Up</Button>
+                            </div>
+                        </Form>
+
+                        <div className="ui message">
+                            <Link to="/login">Log-in</Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

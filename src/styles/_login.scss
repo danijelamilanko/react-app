@@ -1,0 +1,15 @@
+@import 'colors';
+
+.login-page {
+
+    & > .grid {
+        height: 100%;
+    }
+
+    .column {
+        max-width: 450px;
+    }
+    .ui.message a:first-of-type {
+        padding-right: 20px;
+    }
+}

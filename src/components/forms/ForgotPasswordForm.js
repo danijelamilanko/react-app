@@ -43,22 +43,35 @@ class ForgotPasswordForm extends React.Component {
         const {errors, data, loading} = this.state;
 
         return (
-            <Form onSubmit={this.onSubmit} loading={loading}>
-                {!!errors.global && <Message negative>{errors.global}</Message>}
-                <Form.Field error={!!errors.email}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="email"
-                        value={data.email}
-                        onChange={this.onChange}
-                    />
-                    {errors.email && <InlineError text={errors.email}/>}
-                </Form.Field>
-                <Button primary>ForgotPasswordForm</Button>
-            </Form>
+            <div className='login-page'>
+                <div className='ui middle aligned center aligned grid'>
+                    <div className='column'>
+                        <h1 className='ui teal image header'>
+                            <div className='content'>
+                                Get new password
+                            </div>
+                        </h1>
+                        <Form onSubmit={this.onSubmit} loading={loading} className='ui large form'>
+                            {!!errors.global && <Message negative>{errors.global}</Message>}
+                            <div className='ui stacked segment'>
+                                <Form.Field error={!!errors.email}>
+                                    <label htmlFor="email">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="email"
+                                        value={data.email}
+                                        onChange={this.onChange}
+                                    />
+                                    {errors.email && <InlineError text={errors.email}/>}
+                                </Form.Field>
+                                <Button className='ui fluid large teal submit button'>Submit</Button>
+                            </div>
+                        </Form>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

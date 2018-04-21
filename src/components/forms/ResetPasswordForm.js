@@ -46,39 +46,48 @@ class ResetPasswordForm extends React.Component {
         const {errors, data, loading} = this.state;
 
         return (
-            <Form onSubmit={this.onSubmit} loading={loading}>
-                <Form.Field error={!!errors.password}>
-                    <label htmlFor="password">New Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="your new password"
-                        value={data.password}
-                        onChange={this.onChange}
-                    />
-                    {errors.password && <InlineError text={errors.password}/>}
-                </Form.Field>
+            <div className='login-page'>
+                <div className='ui middle aligned center aligned grid'>
+                    <div className='column'>
+                        <h1 className='ui teal image header'>
+                            <div className='content'>
+                                Reset password
+                            </div>
+                        </h1>
+                        <Form onSubmit={this.onSubmit} loading={loading} className='ui large form'>
+                <div className='ui stacked segment'>
+                    <Form.Field error={!!errors.password}>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="your new password"
+                            value={data.password}
+                            onChange={this.onChange}
+                        />
+                        {errors.password && <InlineError text={errors.password}/>}
+                    </Form.Field>
 
-                <Form.Field error={!!errors.passwordConfirmation}>
-                    <label htmlFor="passwordConfirmation">
-                        Confirm your new password
-                    </label>
-                    <input
-                        type="password"
-                        id="passwordConfirmation"
-                        name="passwordConfirmation"
-                        placeholder="type it again, please"
-                        value={data.passwordConfirmation}
-                        onChange={this.onChange}
-                    />
-                    {errors.passwordConfirmation && (
-                        <InlineError text={errors.passwordConfirmation}/>
-                    )}
-                </Form.Field>
+                    <Form.Field error={!!errors.passwordConfirmation}>
+                        <input
+                            type="password"
+                            id="passwordConfirmation"
+                            name="passwordConfirmation"
+                            placeholder="type it again, please"
+                            value={data.passwordConfirmation}
+                            onChange={this.onChange}
+                        />
+                        {errors.passwordConfirmation && (
+                            <InlineError text={errors.passwordConfirmation}/>
+                        )}
+                    </Form.Field>
 
-                <Button primary>Reset</Button>
+                    <Button className='ui fluid large teal submit button'>Submit</Button>
+                </div>
             </Form>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

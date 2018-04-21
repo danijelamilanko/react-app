@@ -14,6 +14,7 @@ import UserRoute from "./components/routes/UserRoute";
 import GuestRoute from "./components/routes/GuestRoute";
 import TopNavigation from "./components/navigation/TopNavigation";
 import { fetchCurrentUser } from "./actions/users";
+import './App.css';
 
 class App extends React.Component {
     componentDidMount() {
