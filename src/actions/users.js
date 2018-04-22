@@ -1,6 +1,5 @@
 import { USER_FETCHED, CREATE_USER_REQUEST, CREATE_USER_FAILURE } from "../types";
 import api from "../api";
-import { userLoggedIn } from "./auth";
 
 export const userFetched = user => ({
     type: USER_FETCHED,
