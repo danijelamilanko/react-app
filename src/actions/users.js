@@ -17,11 +17,5 @@ export const createUserRequest = user => ({
     user
 });
 
-export const signup = data => dispatch =>
-    api.user.signup(data).then(user => {
-        localStorage.reactJWT = user.token;
-        dispatch(userLoggedIn({...user, loaded: true}));
-    });
-
 export const fetchCurrentUser = () => (dispatch) =>
     api.user.fetchCurrentUser().then(user => dispatch(userFetched(user)));
