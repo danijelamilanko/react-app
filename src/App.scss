@@ -2,10 +2,28 @@
 @import 'styles/colors';
 @import "styles/login";
 @import "styles/home";
+@import "styles/tabs";
 @import "styles/dashboard";
 
+html,
 body {
-  background-color: $grey;
+    height: 100%;
+}
+
+.maincontainer{
+    height:100%;
+}
+
+.wrapper{
+    height:100%;
+}
+
+.ui.grid {
+    min-height: 100%;
+}
+
+#root, .ui.container, .loadedContent {
+    height: 100%;
 }
 
 h1 {
@@ -13,5 +31,10 @@ h1 {
   text-align: center;
   color: $green;
 }
+
+html, #root {
+    background-color: $light-grey;
+}
+
 
 @import 'styles/phone';

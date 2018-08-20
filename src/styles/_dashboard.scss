@@ -1,8 +1,17 @@
 @import 'colors';
 
 .dashboard-page {
+    height: calc(100% - 60px);
 
     a, a:hover {
         color: $green;
+    }
+    .ten {
+        .ui.segment {
+            padding: 0;
+            background-color: transparent;
+            box-shadow: none;
+            border: none;
+        }
     }
 }
