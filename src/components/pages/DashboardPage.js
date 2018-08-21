@@ -14,10 +14,24 @@ class DashboardPage extends React.Component {
                     <Grid.Column className="stretched column" width={13}>
                         <Tabs>
                             <div label="Planete u kucama">
-                                Planete u kucama u izradi...
+                                <div className="chat-list">Planete u kucama u izradi...</div>
+                                <div className="users-list">
+                                    <div className="users-list-menu">
+                                        <span className="users-list-top">10 korisnika</span>
+                                        <i className="search icon"></i>
+                                        <i className="grid layout icon"></i>
+                                    </div>
+                                </div>
                             </div>
                             <div label="Vladari kuca">
-                                Vladari kuca u izradi...
+                                <div className="chat-list">Vladari kuca u izradi...</div>
+                                <div className="users-list">
+                                    <div className="users-list-menu">
+                                        <span className="users-list-top">20 korisnika</span>
+                                        <i className="search icon"></i>
+                                        <i className="grid layout icon"></i>
+                                    </div>
+                                </div>
                             </div>
                         </Tabs>
                     </Grid.Column>

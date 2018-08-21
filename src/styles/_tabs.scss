@@ -21,8 +21,8 @@
 }
 
 .tab-content {
+    display: flex;
     flex-grow: 1;
-    padding: 10px;
     background-color: white;
     border-left: 1px solid $border-grey;
     border-bottom: 1px solid $border-grey;
